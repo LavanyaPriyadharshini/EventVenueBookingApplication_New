@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/LEARNING NOTES NEW/New Project using Node/Backend/Event Flow Project/**)",
+      "Bash(npm run *)"
+    ]
+  }
+}

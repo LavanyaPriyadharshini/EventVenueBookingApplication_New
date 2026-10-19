@@ -1,0 +1,32 @@
+{
+  "name": "event-flow-project",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "shared",
+    "gateway",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n auth,venue,gw -c auto \"npm run dev -w services/auth-service\" \"npm run dev -w services/venue-service\" \"npm run dev -w gateway\"",
+    "dev:cluster": "concurrently -n auth,gw -c auto \"npm run start:cluster -w services/auth-service\" \"npm run dev -w gateway\"",
+    "loadtest:register": "node scripts/loadtest-register.js",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "@types/supertest": "^7.2.1",
+    "autocannon": "^7.15.0",
+    "concurrently": "^10.0.6",
+    "mongodb-memory-server": "^11.3.0",
+    "supertest": "^7.3.1",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}

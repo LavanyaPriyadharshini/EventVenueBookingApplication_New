@@ -1,0 +1,12 @@
+# Redis and RabbitMQ are intentionally not defined here — the containers from the earlier
+# ASP.NET setup (eventflow-redis, eventflow-rabbitmq) are still running on the same ports
+# (127.0.0.1:6379, 127.0.0.1:5672) and are reused as-is. Only Mongo is new for this stack.
+services:
+  mongo:
+    image: mongo:7
+    container_name: eventflow-mongo
+    ports: ["127.0.0.1:27017:27017"]
+    volumes: [mongo-data:/data/db]
+
+volumes:
+  mongo-data:

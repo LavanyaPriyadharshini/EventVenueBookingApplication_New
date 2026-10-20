@@ -21,14 +21,14 @@ export function createResourceHooks<TItem, TCreatePayload = Partial<TItem>, TUpd
 ) {
 
     //fetches a list of records
-     const useList = (params?: Record<string, unknown>) =>
+    const useList = (params?: Record<string, unknown>) =>
     useQuery({
       queryKey: [queryKey, 'list', params], //query key -uniquely identifies the query and its parameters in the cache
       queryFn: () => api.getAll(params),//queryFn calls the API to fetch the list.
     });
 
 
-     const useItem = (id: string) =>
+    const useItem = (id: string) =>
     useQuery({
       queryKey: [queryKey, 'item', id],
       queryFn: () => api.getById(id),
@@ -36,22 +36,22 @@ export function createResourceHooks<TItem, TCreatePayload = Partial<TItem>, TUpd
     });
 
 
-      const useCreate = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: TCreatePayload) => api.create(payload),
-      onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey, 'list'] }),
-    });
-  };
+    const useCreate = () => {
+      const queryClient = useQueryClient();
+      return useMutation({
+        mutationFn: (payload: TCreatePayload) => api.create(payload),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey, 'list'] }),
+      });
+    };
 
 
     const useUpdate = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: ({ id, payload }: { id: string; payload: TUpdatePayload }) => api.update(id, payload),
-      onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey, 'list'] }),
-    });
-  };
+      const queryClient = useQueryClient();
+      return useMutation({
+        mutationFn: ({ id, payload }: { id: string; payload: TUpdatePayload }) => api.update(id, payload),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: [queryKey, 'list'] }),
+      });
+    };
 
     const useRemove = () => {
     const queryClient = useQueryClient();

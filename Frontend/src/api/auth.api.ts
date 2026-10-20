@@ -2,6 +2,48 @@ import { axiosClient } from '../lib/axiosClients';
 
 //this file is purely for the authentication - this contains only the Registration and Login properties
 
+
+
+
+export interface ForgotPasswordPayload {
+  email: string;
+}
+
+export interface ForgotPasswordResponse {
+  status: string;
+  message: string;
+  resetToken?: string;
+}
+
+export const forgotPasswordRequest = async (
+  payload: ForgotPasswordPayload
+): Promise<ForgotPasswordResponse> => {
+  const { data } = await axiosClient.post<ForgotPasswordResponse>('/api/auth/forgotPassword', payload);
+  return data;
+};
+
+export interface ResetPasswordPayload {
+  password: string;
+}
+
+export interface ResetPasswordResponse {
+  status: string;
+  token: string;
+}
+
+export const resetPasswordRequest = async (
+  token: string,
+  payload: ResetPasswordPayload
+): Promise<ResetPasswordResponse> => {
+  const { data } = await axiosClient.post<ResetPasswordResponse>(
+    `/api/auth/resetPassword/${token}`,
+    payload
+  );
+  return data;
+};
+
+
+
 export interface RegisterPayload {
   email: string;
   password: string;

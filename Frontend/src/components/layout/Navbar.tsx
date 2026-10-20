@@ -5,6 +5,8 @@ const links = [
   { to: '/dashboard', label: 'Dashboard' },
   { to: '/venues', label: 'Venues' },
   { to: '/sections', label: 'Sections' },
+   { to: '/rows', label: 'Rows' },
+  { to: '/seats', label: 'Seats' },
 ];
 
 export const Navbar = () => {
@@ -34,5 +36,6 @@ const {logout}=useAuthContext();
 
   )
 
+  //next see to the App.tsx even
   //next alter the protectedRoute.tsx to align with the navbar
 }

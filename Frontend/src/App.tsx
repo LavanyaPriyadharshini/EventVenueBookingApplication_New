@@ -7,9 +7,16 @@ import { Venues } from './pages/Venues/Venues'
 import { VenuesDisplay } from './pages/Venues/VenuesDisplay'
 import { SectionsDisplay } from './pages/Sections/SectionDisplay'
 import { Sections } from './pages/Sections/Sections'
+import { Seats } from './pages/Seats/Seats'
+import { Rows } from './pages/Rows/Rows'
+import { RowsDisplay } from './pages/Rows/RowDisplay'
+import { SeatsDisplay } from './pages/Seats/SeatDisplay'
+import { ForgotPassword } from './pages/auth/ForgotPassword'
+import { ResetPassword } from './pages/auth/ResetPassword'
 
 // here ProtectedRoute is the common code i have given for protecting the page
-//here when a user has not logged in then 
+//here when a user has not logged in then they cannot directly access the page
+//the protected route is given in the layout-> protected route
 function App() {
   return (
     <Routes>
@@ -62,8 +69,16 @@ function App() {
   }
 />
 
-      
-    </Routes>
+<Route path="/rows/create" element={<ProtectedRoute><Rows /></ProtectedRoute>} />
+<Route path="/rows" element={<ProtectedRoute><RowsDisplay /></ProtectedRoute>} />
+
+<Route path="/seats/create" element={<ProtectedRoute><Seats /></ProtectedRoute>} />
+<Route path="/seats/create" element={<ProtectedRoute><SeatsDisplay /></ProtectedRoute>} />
+     
+<Route path="/forgot-password" element={<ForgotPassword />} />
+<Route path="/reset-password/:token" element={<ResetPassword />} />
+
+</Routes>
 
     
   )
